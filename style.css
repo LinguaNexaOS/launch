@@ -1,0 +1,336 @@
+/* ==========================================================================
+   LINGUANEXA OS - MASTER STYLESHEET (OPTIMIZED FOR CRO)
+   ========================================================================== */
+
+/* GLOBAL VARIABLES & DESIGN TOKENS */
+:root {
+    --bg-native: #191919; 
+    --bg-onyx: #0A0A0A;
+    --text-base: #D4D4D4;
+    --text-white: #FFFFFF;
+    --gamification-green: #4F9768;
+    --ai-purple: #865DBB;
+    --danger-red: #e74c3c;
+    --warning-orange: #f39c12;
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --font-heading: 'Instrument Serif', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* RESET & BASE STYLES */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-native);
+    color: var(--text-base);
+    font-family: var(--font-body);
+    line-height: 1.6;
+}
+
+body {
+    background: radial-gradient(circle at 50% 0%, rgba(134, 93, 187, 0.08) 0%, var(--bg-native) 50%);
+    background-attachment: fixed;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5 { 
+    font-family: var(--font-heading); 
+    color: var(--text-white); 
+    font-weight: 400; 
+    line-height: 1.1; 
+    letter-spacing: 0.5px;
+}
+
+.section-title { font-size: 3.5rem; margin-bottom: 1rem; }
+.sub-header { font-size: 1.15rem; max-width: 700px; margin: 0 auto 3rem; color: #a0a0a0; }
+.text-center { text-align: center; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+/* UTILITIES: GLASSMORPHISM & BUTTONS */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    padding: 16px 32px; font-family: var(--font-body); font-weight: 700; font-size: 1.05rem;
+    border-radius: 8px; text-decoration: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: pointer; border: none;
+}
+.btn-primary { 
+    background: linear-gradient(135deg, var(--gamification-green) 0%, #3a7550 100%);
+    color: var(--text-white); 
+    box-shadow: 0 10px 25px rgba(79, 151, 104, 0.4); 
+}
+.btn-primary:hover { 
+    transform: translateY(-3px) scale(1.02); 
+    box-shadow: 0 15px 35px rgba(79, 151, 104, 0.6); 
+}
+.btn-secondary { 
+    background-color: transparent; 
+    color: var(--text-base); 
+    border: 1px solid var(--glass-border); 
+}
+.btn-secondary:hover:not(.disabled) {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-white);
+}
+.btn-full { width: 100%; }
+.disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ANIMATIONS */
+@keyframes float { 
+    0% { transform: translateY(0px); } 
+    50% { transform: translateY(-20px); } 
+    100% { transform: translateY(0px); } 
+}
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(79, 151, 104, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(79, 151, 104, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(79, 151, 104, 0); }
+}
+@keyframes iconPulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.pulse-effect { animation: pulseGlow 2.5s infinite; }
+.pulse-icon { animation: iconPulse 2s infinite; color: #fff; }
+
+.reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.215, 0.610, 0.355, 1); }
+.reveal.active { opacity: 1; transform: translateY(0); }
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+.delay-5 { transition-delay: 0.5s; }
+
+/* 1. STICKY FOMO BAR */
+.sticky-bar {
+    position: sticky; top: 0; z-index: 1000;
+    background: rgba(231, 76, 60, 0.95);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    color: var(--text-white); padding: 12px 0; font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5); border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.sticky-bar p { margin: 0; display: flex; align-items: center; justify-content: center; gap: 10px; }
+
+/* 2. HERO SECTION */
+.hero-section { padding: 100px 0 80px; min-height: 90vh; display: flex; align-items: center; }
+.hero-container { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.badge-premium { 
+    display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; 
+    background: rgba(134, 93, 187, 0.1); border: 1px solid rgba(134, 93, 187, 0.3); 
+    color: #c9a7ff; border-radius: 50px; font-size: 0.85rem; font-weight: 600; margin-bottom: 24px; letter-spacing: 1px; 
+}
+.hero-title { font-size: 5.5rem; margin-bottom: 24px; text-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.hero-subtitle { font-size: 1.15rem; margin-bottom: 40px; font-weight: 400; color: #b3b3b3; line-height: 1.8; }
+.hero-subtitle strong { color: var(--text-white); font-weight: 600; }
+.hero-cta { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.cta-note { font-size: 0.85rem; color: #888; font-weight: 500; }
+.mockup-img { width: 100%; height: auto; filter: drop-shadow(0 30px 60px rgba(0,0,0,0.9)); animation: float 6s ease-in-out infinite; }
+
+/* 3. SOCIAL PROOF & AUTHORITY SECTION */
+.authority-section { padding: 60px 0; background: linear-gradient(to bottom, var(--bg-native), var(--bg-onyx)); border-bottom: 1px solid var(--glass-border); }
+.authority-intro { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; color: #888; margin-bottom: 24px; font-weight: 700; }
+.authority-logos { display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap; }
+.auth-item { display: flex; align-items: center; gap: 10px; color: var(--text-white); font-weight: 600; font-size: 1.1rem; opacity: 0.8; }
+.auth-item i { color: var(--ai-purple); font-size: 1.5rem; }
+.testimonial-card { max-width: 800px; margin: 0 auto; padding: 40px; border-left: 4px solid var(--ai-purple); position: relative; }
+.testimonial-card::before { content: '"'; position: absolute; top: 10px; left: 20px; font-size: 5rem; font-family: var(--font-heading); color: rgba(134, 93, 187, 0.2); line-height: 1; }
+.quote-text { font-family: var(--font-heading); font-size: 1.8rem; line-height: 1.4; color: var(--text-white); margin-bottom: 24px; position: relative; z-index: 2; font-style: italic; }
+.quote-author { display: flex; flex-direction: column; font-size: 0.9rem; }
+.quote-author strong { color: var(--text-white); font-size: 1rem; }
+.quote-author span { color: #888; }
+
+/* 4. TRANSFORMATION SECTION (STATE A VS STATE B) */
+.transformation-section { padding: 100px 0; background-color: var(--bg-onyx); position: relative; }
+.transformation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
+.state-card { padding: 40px; border-radius: 16px; }
+.state-card.state-a { background: rgba(20, 20, 20, 0.5); border: 1px dashed rgba(255,255,255,0.1); opacity: 0.8; }
+.state-card.state-b { border-color: rgba(79, 151, 104, 0.3); box-shadow: 0 20px 50px rgba(79, 151, 104, 0.05); }
+.state-header { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+.state-a .state-header { color: var(--danger-red); }
+.state-b .state-header { color: var(--gamification-green); }
+.state-card ul { list-style: none; }
+.state-card ul li { position: relative; padding-left: 32px; margin-bottom: 16px; font-size: 1.05rem; }
+.state-a ul li::before { content: '×'; position: absolute; left: 0; top: -2px; color: var(--danger-red); font-size: 1.5rem; font-weight: bold; }
+.state-b ul li::before { content: '✓'; position: absolute; left: 0; top: 0; color: var(--gamification-green); font-size: 1.2rem; font-weight: bold; }
+
+/* 5. GLIMPSE OF COMPLEXITY (Static Optimized) */
+.complexity-section { padding: 100px 0; }
+.sub-complexity { max-width: 700px; margin: 0 auto 50px; }
+.complexity-visual { 
+    position: relative; 
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    border-radius: 16px; 
+    overflow: hidden; 
+    border: 1px solid rgba(134, 93, 187, 0.3); 
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    /* Transisi mulus untuk memberikan ilusi dinamis pada gambar statis */
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
+}
+
+/* Interaksi saat gambar disorot */
+.complexity-visual:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 40px 100px rgba(134, 93, 187, 0.2);
+    border-color: rgba(134, 93, 187, 0.6);
+}
+
+.glimpse-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(to top, var(--bg-native) 0%, transparent 40%, rgba(134, 93, 187, 0.05) 100%); 
+    z-index: 1; 
+    pointer-events: none; 
+}
+
+.complexity-img.static-demo { 
+    width: 100%; 
+    display: block; 
+    filter: contrast(1.1) brightness(0.9);
+    /* Zoom perlahan untuk memicu fokus audiens */
+    transition: transform 0.8s ease;
+}
+
+.complexity-visual:hover .complexity-img.static-demo {
+    transform: scale(1.03);
+}
+
+/* 6. VALUE STACKING */
+.value-stack-section { padding: 100px 0; background-color: var(--bg-onyx); }
+.value-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 40px; }
+.value-card { padding: 32px; border-left: 4px solid var(--gamification-green); }
+.value-card:nth-child(even) { border-left-color: var(--ai-purple); }
+.value-badge { display: inline-block; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 1px; }
+.value-card h3 { font-family: var(--font-body); font-size: 1.2rem; font-weight: 700; margin-bottom: 12px; }
+.value-card p { font-size: 0.95rem; color: #a0a0a0; }
+.total-value-box { text-align: center; padding: 30px; background: rgba(231, 76, 60, 0.05); border: 1px dashed rgba(231, 76, 60, 0.3); border-radius: 12px; max-width: 600px; margin: 0 auto; }
+.total-value-box h4 { font-family: var(--font-body); font-size: 1.5rem; font-weight: 700; color: #888; }
+.strike { text-decoration: line-through; color: var(--danger-red); margin-left: 10px; font-size: 2rem; }
+
+/* 7. ANTI-SELLING SECTION */
+.anti-selling-section { padding: 100px 0; }
+.anti-selling-box { padding: 60px; border: 1px solid var(--glass-border); border-radius: 24px; background: linear-gradient(135deg, rgba(255,255,255,0.01), rgba(255,255,255,0.03)); }
+.qualification-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.qual-red, .qual-green { padding: 30px; border-radius: 12px; background: rgba(0,0,0,0.3); }
+.qual-red { border-top: 3px solid var(--danger-red); }
+.qual-green { border-top: 3px solid var(--gamification-green); }
+.qual-red h3, .qual-green h3 { font-family: var(--font-body); font-size: 1rem; font-weight: 800; letter-spacing: 1px; margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+.qual-red h3 { color: var(--danger-red); }
+.qual-green h3 { color: var(--gamification-green); }
+.qualification-grid ul { list-style-type: none; }
+.qualification-grid ul li { margin-bottom: 16px; font-size: 0.95rem; padding-left: 20px; position: relative; color: #b3b3b3; }
+.qual-red ul li::before { content: '•'; color: var(--danger-red); position: absolute; left: 0; font-size: 1.2rem; }
+.qual-green ul li::before { content: '•'; color: var(--gamification-green); position: absolute; left: 0; font-size: 1.2rem; }
+
+/* 8. PRICING DECOY EFFECT (Isolated Hero Product) */
+.pricing-section { padding: 120px 0; background-color: var(--bg-onyx); }
+.pricing-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; max-width: 1000px; margin: 0 auto; }
+.price-card { padding: 50px 40px; border-radius: 24px; position: relative; display: flex; flex-direction: column; height: 100%; }
+.basic-card { opacity: 0.85; transform: scale(0.95); border: 1px solid var(--glass-border); }
+.absolute-card { background: var(--bg-native); border: 2px solid var(--ai-purple); box-shadow: 0 20px 60px rgba(134, 93, 187, 0.2); z-index: 2; }
+.absolute-glow { position: absolute; inset: -2px; background: linear-gradient(135deg, var(--ai-purple), var(--gamification-green)); border-radius: 26px; z-index: -1; opacity: 0.5; filter: blur(10px); }
+.popular-badge { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg, var(--danger-red), var(--warning-orange)); color: #fff; padding: 6px 20px; border-radius: 50px; font-size: 0.8rem; font-weight: 800; letter-spacing: 1px; white-space: nowrap; box-shadow: 0 5px 15px rgba(0,0,0,0.5); animation: pulseGlow 2s infinite; }
+.card-header h3 { font-family: var(--font-body); font-size: 1.5rem; font-weight: 700; }
+.accent-purple { color: #c9a7ff; }
+.accent-green { color: var(--gamification-green); }
+.target-lang { font-size: 0.9rem; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+/* Styling untuk Harga Value Stack yang Dicoret */
+.value-price-strike {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #888;
+    margin-top: 24px;
+    margin-bottom: -15px; /* Menarik harga diskon di bawahnya agar menempel rapat */
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.value-price-strike span {
+    text-decoration: line-through;
+    text-decoration-color: var(--danger-red);
+    text-decoration-thickness: 2.5px; /* Ketebalan coretan merah agar sangat mencolok */
+    color: #a0a0a0;
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+.price-amount { margin: 30px 0 15px; font-size: 4rem; font-family: var(--font-heading); line-height: 1; display: flex; align-items: flex-start; }
+.currency { font-size: 1.5rem; margin-top: 10px; margin-right: 5px; font-family: var(--font-body); font-weight: 600; }
+.zeros { font-size: 1.5rem; margin-top: auto; font-family: var(--font-body); font-weight: 600; color: #666; }
+.price-desc { font-size: 0.95rem; margin-bottom: 30px; min-height: 50px; }
+.feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
+.feature-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; }
+.feature-list i { margin-top: 4px; font-size: 1.1rem; }
+.basic-card .feature-list i.fa-check { color: #888; }
+.basic-card .feature-list .disabled { color: #555; }
+.basic-card .feature-list .disabled i { color: #444; }
+.secure-text { text-align: center; font-size: 0.8rem; color: #888; margin-top: 16px; font-weight: 500; }
+
+/* 9. CATALOG SECTION (Waitlist) */
+.catalog-section { padding: 80px 0; border-top: 1px solid var(--glass-border); }
+.catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.product-card { padding: 24px; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.card-badge.wait { position: absolute; top: 12px; right: 12px; background: #222; border: 1px solid #444; color: #888; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; }
+.product-info { width: 100%; margin-top: 20px; }
+.product-info h3 { font-family: var(--font-body); font-size: 1.1rem; font-weight: 700; margin-bottom: 16px; color: #888; }
+
+/* 10. TRUST, RISK REVERSAL & FAQ */
+.trust-section { padding: 120px 0; background-color: var(--bg-onyx); }
+.trust-badges { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; text-align: center; margin-bottom: 100px; }
+.trust-badges i { font-size: 3rem; color: var(--text-white); margin-bottom: 24px; opacity: 0.8; }
+.trust-badges h4 { font-family: var(--font-body); font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
+.trust-badges p { color: #a0a0a0; font-size: 0.95rem; }
+.risk-reversal { padding: 20px; background: rgba(79, 151, 104, 0.05); border: 1px solid rgba(79, 151, 104, 0.2); border-radius: 16px; transform: translateY(-10px); }
+.risk-reversal i { color: var(--gamification-green); opacity: 1; }
+
+.faq-container { max-width: 800px; margin: 0 auto; }
+.accordion { border-top: 1px solid var(--glass-border); }
+.accordion-item { border-bottom: 1px solid var(--glass-border); }
+.accordion-header { width: 100%; padding: 24px 0; background: none; border: none; color: var(--text-white); font-family: var(--font-body); font-size: 1.1rem; font-weight: 600; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.accordion-header::after { content: '+'; color: var(--gamification-green); font-size: 1.8rem; font-weight: 300; transition: transform 0.3s ease; }
+.accordion-item.active .accordion-header::after { transform: rotate(45deg); color: var(--danger-red); }
+.accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0, 1, 0, 1); }
+.accordion-item.active .accordion-content { transition: max-height 0.4s ease-in-out; }
+.accordion-content p { padding-bottom: 24px; color: #a0a0a0; line-height: 1.8; }
+
+/* 11. FOOTER */
+.site-footer { text-align: center; padding: 60px 0 40px; border-top: 1px solid var(--glass-border); background-color: var(--bg-native); }
+.site-footer p { color: #666; font-size: 0.9rem; }
+.social-links a:hover { color: var(--text-white) !important; transition: color 0.3s ease; }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 992px) {
+    .hero-container, .transformation-grid, .pricing-grid, .qualification-grid { grid-template-columns: 1fr; }
+    .hero-text-content { text-align: center; order: 1; display: flex; flex-direction: column; align-items: center; }
+    .hero-cta { align-items: center; }
+    .hero-visual { order: 2; margin-top: 40px; }
+    .hero-title { font-size: 4rem; }
+    
+    .pricing-grid { max-width: 500px; }
+    .basic-card { transform: scale(1); opacity: 1; }
+    .absolute-card { transform: scale(1.02); }
+    
+    .trust-badges { grid-template-columns: 1fr; gap: 50px; }
+    .value-grid { grid-template-columns: 1fr; }
+    .anti-selling-box { padding: 40px 20px; }
+}
+
+@media (max-width: 576px) {
+    .section-title { font-size: 2.2rem; }
+    .hero-title { font-size: 3rem; }
+    .price-amount { font-size: 3.5rem; }
+    .sticky-bar { font-size: 0.8rem; padding: 10px 15px; }
+}

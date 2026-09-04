@@ -365,27 +365,24 @@ h1, h2, h3, h4, h5 {
     .anti-selling-box { padding: 40px 20px; }
 }
 /* FLOATING INSTAGRAM DM BUTTON */
+/* FLOATING INSTAGRAM DM BUTTON - FORCED */
 .floating-dm-btn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: rgba(134, 93, 187, 0.85); /* Warna aksen AI Purple LinguaNexa */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--text-white);
-    padding: 14px 24px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(134, 93, 187, 0.4);
-    z-index: 999;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: fixed !important;
+    bottom: 30px !important;
+    right: 30px !important;
+    background: #865DBB !important;
+    color: #FFFFFF !important;
+    padding: 14px 24px !important;
+    border-radius: 50px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-family: var(--font-body) !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    text-decoration: none !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8) !important;
+    z-index: 999999 !important; /* Nilai z-index tertinggi agar tidak bisa tertutup elemen lain */
 }
 
 .floating-dm-btn i {
